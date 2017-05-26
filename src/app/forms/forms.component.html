@@ -1,0 +1,150 @@
+<div class="container content">
+  <h1>Forms</h1>
+  <h2>Custom Form Validations</h2>
+  <div>
+    <form (ngSubmit)="processForm()" [formGroup]="form">
+      <input type="text" placeholder="Name" name="name" #name
+        formControlName="name">
+      <input type="text" placeholder="Email" name="email" #email
+        formControlName="email">
+      <button type="submit" [disabled]="!form.valid">Submit</button>
+      <div class="help-block" *ngIf="formErrors.name">
+        {{ formErrors.name }}
+      </div>
+      <div class="help-block" *ngIf="formErrors.email">
+        {{ formErrors.email }}
+      </div>
+    </form>
+  </div>
+  <figure class="highlight html">
+    <div class="comment">// app.component.html</div>
+    <span class="tag">
+      &lt;<span class="attr">form</span>
+      <span class="attr">(ngSubmit)</span>=<span class="string">"processForm()"</span>
+      <span class="attr">[formGroup]</span>=<span class="string">"form"</span>&gt;
+    </span>
+    <div class="form">
+      <div class="line">
+        <span class="tag">
+          &lt;<span class="attr">input</span>
+          <span class="attr">type</span>=<span class="string">"text"</span>
+          <span class="attr">placeholder</span>=<span class="string">"Name"</span>
+          <span class="attr">name</span>=<span class="string">"name"</span>
+          <span class="attr">formControlName</span>=<span class="string">"name"</span>
+          <span class="attr">value</span>=<span class="string">"{{ name.value }}"</span>&gt;
+        </span>
+      </div>
+      <div class="line">
+        <span class="tag">
+          &lt;<span class="name">p</span>&gt;</span>Message is: {{ formErrors.name || 'null' }}<span class="tag">&lt;/<span class="name">p</span>&gt;
+        </span>
+      </div>
+      <br />
+      <div class="line">
+        <span class="tag">
+          &lt;<span class="attr">input</span>
+          <span class="attr">type</span>=<span class="string">"text"</span>
+          <span class="attr">placeholder</span>=<span class="string">"Email"</span>
+          <span class="attr">name</span>=<span class="string">"email"</span>
+          <span class="attr">formControlName</span>=<span class="string">"email"</span>
+          <span class="attr">value</span>=<span class="string">"{{email.value}}"</span>&gt;
+        </span>
+      </div>
+      <div class="line">
+        <span class="tag">
+          &lt;<span class="attr">p</span>&gt;</span>Message is: {{ formErrors.email || 'null' }}<span class="tag">&lt;/<span class="name">p</span>&gt;
+        </span>
+      </div>
+      <br />
+      <div class="line">
+        <span class="tag">
+          &lt;<span class="attr">button</span>
+          <span class="attr">type</span>=<span class="string">"submit"</span>
+          <span class="attr">[disabled]</span>=<span class="string">"{{ form.status }}"</span>&gt;</span>
+          Submit<span class="tag">&lt;/<span class="name">button</span>&gt;
+        </span>
+      </div>
+    </div>
+    <span class="tag">&lt;/<span class="name">form</span>&gt;</span>
+  </figure>
+  <figure class="highlight javascript">
+    <div class="comment">// app/utils/constants/form-custom-validation-messages.ts</div>
+    <pre><code>
+<span class="declaration">export const</span> <span class="fi">LIST_OF_CUSTOM_MESSAGES</span> = &#123;
+  <span class="variable">NAME_REQUIRED</span>: <span class="">'Name is required'</span>,
+  <span class="variable">EMAIL_REQUIRED</span>: <span class="">'Email is required'</span>,
+  <span class="variable">EMAIL_INVALID</span>: <span class="">'Your email is invalid</span>'
+&#125;</code></pre>
+  </figure>
+  <figure class="highlight javascript">
+    <div class="comment">// app.component.ts</div>
+    <pre><code class="">
+<span class="declaration">import</span> &#123; <span class="fi">FormGroup, FormBuilder, Validators</span> &#125; <span class="declaration">from</span> '<span class="">@angular/forms</span>';
+
+<span class="declaration">import</span> &#123; <span class="fi">LIST_OF_CUSTOM_MESSAGES</span> &#125; <span class="declaration">from</span> '<span class="">./utils/constants/form-custom-validation-messages</span>';
+
+...
+
+<span class="variable">form: FormGroup</span>;
+<span class="variable">formErrors</span> = &#123;
+  <span class="variable">name</span>: '',
+  <span class="variable">email</span>: ''
+&#125;;
+<span class="variable">validationMessage</span> = &#123;
+  <span class="variable">name</span>: &#123;
+    <span class="variable">required</span>: <span class="fi">LIST_OF_CUSTOM_MESSAGES.NAME_REQUIRED</span>
+  &#125;,
+  <span class="variable">email</span>: &#123;
+    <span class="variable">required</span>: <span class="fi">LIST_OF_CUSTOM_MESSAGES.EMAIL_REQUIRED</span>,
+    <span class="variable">pattern</span>: <span class="fi">LIST_OF_CUSTOM_MESSAGES.EMAIL_INVALID</span>
+  &#125;
+&#125;;
+
+<span class="declaration">constructor(private <span class="variable">fb: FormBuilder</span>)</span> &#123; &#125;
+
+<span class="declaration">ngOnInit()</span> &#123;
+  <span class="string">// build the data from our form</span>
+  this.buildForm();
+&#125;
+
+<span class="declaration">buildForm()</span> &#123;
+  <span class="string">// initialize regex patterns</span>
+  <span class="declaration">const</span> <span class="variable">email</span> = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]&#123;2,3}$/;
+
+  <span class="string">// build our form</span>
+  this.<span class="variable">form</span> = this.<span class="variable">fb</span>.group(&#123;
+    <span class="variable">name</span>: ['', [<span class="fi">Validators</span>.required]],
+    <span class="variable">email</span>: ['', [<span class="fi">Validators</span>.required, <span class="fi">Validators</span>.pattern(email)]]
+  });
+
+  <span class="string">// watch for changes and validate</span>
+  this.<span class="variable">form</span>.valueChanges.subscribe(() => this.validateForm());
+&#125;
+
+<span class="declaration">validateForm()</span> &#123;
+  for(<span class="declaration">let</span> <span class="variable">field</span> in <span class="variable">this.formErrors</span>) &#123;
+
+    <span class="string">// clean that input field errors</span>
+    this.<span class="variable">formErrors[field]</span> = '';
+
+    <span class="string">// grab an input field by name</span>
+    <span class="declaration">let</span> <span class="variable">input</span> = this.form.get(field);
+
+    <span class="string">// figure out the type of errors</span>
+    if(<span class="variable">input</span>.invalid && <span class="variable">input</span>.dirty) &#123;
+
+      <span class="string">// loop over the formErrors field names</span>
+      for(<span class="declaration">let</span> <span class="variable">error</span> in <span class="variable">input</span>.errors) &#123;
+
+        <span class="string">// assign that type of error message to a variable</span>
+        this.<span class="variable">formErrors[field]</span> = <span class="variable">this.validationMessage[field][error]</span>;
+      &#125;
+    &#125;
+  &#125;
+&#125;
+
+<span class="declaration">processForm()</span> &#123;
+  console.log(this.<span class="variable">form</span>.value);
+&#125;</code></pre>
+  </figure>
+</div>

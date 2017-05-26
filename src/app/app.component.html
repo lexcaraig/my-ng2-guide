@@ -1,3 +1,23 @@
-<h1>
-  {{title}}
-</h1>
+<div class="my-ng-guide fix-sidebar">
+  <div class="sidebar">
+    <header>
+      <div class="">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="link">My Angular Guide</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a routerLink="/forms" routerLinkActive="active" class="link">Custom Form Validation</a></li>
+          <li><a routerLink="/forms-rxjs" routerLinkActive="active" class="link">Custom Form Validation with Rxjs</a></li>
+          <li><a routerLink="/routing" routerLinkActive="active" class="link">Routing</a></li>
+          <li><a routerLink="/http-rxjs" routerLinkActive="active" class="link">Http and Observables</a></li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+
+  <main class="content">
+    <div class="">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
