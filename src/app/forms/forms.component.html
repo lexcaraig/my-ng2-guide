@@ -3,14 +3,20 @@
   <h2>Custom Form Validations</h2>
   <div>
     <form (ngSubmit)="processForm()" [formGroup]="form">
-      <input type="text" placeholder="Name" name="name" #name
+      <input type="text" placeholder="Name" name="name"
         formControlName="name">
-      <input type="text" placeholder="Email" name="email" #email
+      <input type="text" placeholder="Email" name="email"
         formControlName="email">
       <button type="submit" [disabled]="!form.valid">Submit</button>
-      <div class="help-block" *ngIf="formErrors.name">
-        {{ formErrors.name }}
+      <div class="" *ngIf="name.invalid && name.touched">
+        <div class="help-block" *ngIf="name.hasError('required')">
+          {{ formErrors.name }}
+        </div>
+        <div class="help-block" *ngIf="name.hasError('lex')">
+          {{ name.errors.lex.expected }}
+        </div>
       </div>
+
       <div class="help-block" *ngIf="formErrors.email">
         {{ formErrors.email }}
       </div>

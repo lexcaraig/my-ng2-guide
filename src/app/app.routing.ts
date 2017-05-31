@@ -8,7 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const appRoutes: Routes = [
   { path: '', component: GreetingsComponent },
-  { path: 'forms', component: FormsComponent },
+  { path: 'form', loadChildren: './forms/form.module#FormModule' },
   { path: '**', component: NotFoundComponent } // not found path should always be at the last order
 ];
 

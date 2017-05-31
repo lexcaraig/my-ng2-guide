@@ -6,10 +6,35 @@
       </div>
       <nav>
         <ul>
-          <li><a routerLink="/forms" routerLinkActive="active" class="link">Custom Form Validation</a></li>
-          <li><a routerLink="/forms-rxjs" routerLinkActive="active" class="link">Custom Form Validation with Rxjs</a></li>
-          <li><a routerLink="/routing" routerLinkActive="active" class="link">Routing</a></li>
-          <li><a routerLink="/http-rxjs" routerLinkActive="active" class="link">Http and Observables</a></li>
+          <li>
+            <h3>Forms</h3>
+            <ul class="sub-menu">
+              <li>
+                <a
+                  routerLink="/form"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  routerLinkActive="active"
+                  class="link">
+                  Custom Form Validation
+                </a>
+              </li>
+              <li>
+                <a
+                  routerLink="/form/rxjs"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  routerLinkActive="active"
+                  class="link">
+                  Custom Form Validation with Rxjs
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a routerLink="/routing" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" class="link">Routing</a>
+          </li>
+          <li>
+            <a routerLink="/http-rxjs" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" class="link">Http and Observables</a>
+          </li>
         </ul>
       </nav>
     </header>

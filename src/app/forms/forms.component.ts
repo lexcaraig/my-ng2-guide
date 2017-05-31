@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 
 import {  LIST_OF_CUSTOM_MESSAGES } from '../utils/constants/form-custom-validation-messages';
 
@@ -38,12 +38,19 @@ export class FormsComponent implements OnInit {
 
     // build our form
     this.form = this.fb.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, this.validateName.bind(this)]],
       email: ['', [Validators.required, Validators.pattern(email)]]
     });
 
     // watch for changes and validate
     this.form.valueChanges.subscribe(date => this.validateForm());
+  }
+
+  get name() { return this.form.get('name'); }
+  get email() { return this.form.get('email'); }
+
+  validateName(ctrl: AbstractControl): ValidationErrors | null {
+    return ctrl.value === 'Lex' ? null : { lex: { expected: 'Lex', actual: ctrl.value }}
   }
 
   validateForm() {

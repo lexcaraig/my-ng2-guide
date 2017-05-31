@@ -51,6 +51,10 @@ header {
   position: fixed;
 }
 
+.sub-menu {
+  margin-left: 15px;
+}
+
 .sidebar {
   position: absolute;
   z-index: 10;

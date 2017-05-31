@@ -8,12 +8,10 @@ import { appRouting } from './app.routing';
 import { AppComponent } from './app.component';
 import { GreetingsComponent } from './greetings/greetings.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { FormsComponent } from './forms/forms.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormsComponent,
     GreetingsComponent,
     NotFoundComponent
   ],
