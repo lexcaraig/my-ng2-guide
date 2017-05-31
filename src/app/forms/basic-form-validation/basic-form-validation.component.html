@@ -1,0 +1,84 @@
+<div class="container content">
+
+  <form (ngSubmit)="processForm()" [formGroup]="form">
+    <input type="text" placheholder="Name" name="name"
+      formControlName="name" />
+    <div *ngIf="name.invalid && name.touched">
+      <div *ngIf="name.hasError('required')">
+        Name is Required
+      </div>
+      <div *ngIf="name.hasError('customError')">
+        This is a custom error
+        the expected value is '{{ name.errors.customError.expected }}' but
+        your input value is '{{ name.errors.customError.actual }}'
+      </div>
+    </div>
+  </form>
+
+</div>
+
+<div class="container content">
+
+  <figure class="highlight html">
+    <span class="tag">
+      &lt;<span class="attr">form</span>
+      <span class="attr">(ngSubmit)</span>=<span class="string">"processForm()"</span>
+      <span class="attr">[formGroup]</span>=<span class="string">"form"</span>&gt;
+    </span>
+    <div class="form">
+      <div class="line">
+        <span class="tag">
+          &lt;<span class="attr">input</span>
+          <span class="attr">type</span>=<span class="string">"text"</span>
+          <span class="attr">placeholder</span>=<span class="string">"Name"</span>
+          <span class="attr">name</span>=<span class="string">"name"</span>
+          <span class="attr">formControlName</span>=<span class="string">"name"</span>
+          <span class="attr">value</span>=<span class="string">"{{ name.value }}"</span>&gt;
+        </span>
+      </div>
+    </div>
+    <span class="tag">&lt;/<span class="name">form</span>&gt;</span>
+  </figure>
+<figure class="highlight javascript"><pre><code>
+  <span class="declaration">import</span> &#123;
+    <span class="fi">FormGroup,
+    FormBuilder,
+    Validators,
+    AbstractControl,
+    ValidationErrors</span>
+  &#125; <span class="declaration">from</span> '@angular/forms';
+
+  ...
+
+  <span class="variable">form: <span class="fi">FormGroup</span></span>;
+
+  <span class="declaration">constructor(private fb: FormBuilder)</span> &#123; &#125;
+
+  <span class="declaration">ngOnInit()</span> &#123;
+    <span class="string">// build the data from our form</span>
+    <span class="fi">this</span>.buildForm();
+  &#125;
+
+  <span class="declaration">buildForm()</span> &#123;
+    <span class="string">// build our form</span>
+    this.<span class="variable">form</span> = this.<span class="variable">fb</span>.group(&#123;
+      <span class="variable">name</span>: ['', [<span class="fi">Validators</span>.required, this.validateName.bind(this)]]
+    &#125;);
+  &#125;
+
+  get <span class="declaration">name()</span> &#123; <span class="fi">return</span> this.<span class="variable">form</span>.get('<span class="fi">name</span>'); &#125;
+
+  <span class="declaration">validateName(ctrl: <span class="fi">AbstractControl)</span></span>: <span class="fi">ValidationErrors | null</span> &#123;
+    <span class="string">// get the formControl value;</span>
+    <span class="string">// check if the value is equal to the condition</span>
+    <span class="string">// if true then return 'null'</span>
+    <span class="string">// if else then reutn a custom object error message</span>
+    return <span class="variable">ctrl</span>.value === 'condition' ? null : &#123; <span class="variable">customError</span>: &#123; <span class="variable">expected</span>: 'Lex', <span class="variable">actual</span>: ctrl.value &#125;&#125;
+  &#125;
+
+  <span class="declaration">processForm()</span> &#123;
+    console.log(this.<span class="variable">form</span>.value);
+  &#125;
+</code></pre></figure>
+
+</div>

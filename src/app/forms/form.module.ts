@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FormSectionComponent } from './form-section.component';
 import { FormsComponent } from './forms.component';
+import { BasicFormValidationComponent } from './basic-form-validation/basic-form-validation.component';
 import { FormRxjsComponent } from './form-rxjs.component';
 
 import { formRouting } from './form.routing';
@@ -19,6 +20,7 @@ import { formRouting } from './form.routing';
   declarations: [
     FormSectionComponent,
     FormsComponent,
+    BasicFormValidationComponent,
     FormRxjsComponent
   ],
   providers: [
