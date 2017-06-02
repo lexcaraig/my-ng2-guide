@@ -1,13 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule }                    from '@angular/platform-browser';
+import { NgModule }                         from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule }                       from '@angular/http';
 
-import { appRouting } from './app.routing';
+import { appRouting }                       from './app.routing';
 
-import { AppComponent } from './app.component';
-import { GreetingsComponent } from './greetings/greetings.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { AppComponent }                     from './app.component';
+import { GreetingsComponent }               from './greetings/greetings.component';
+import { NotFoundComponent }                from './not-found/not-found.component';
 
 @NgModule({
   declarations: [

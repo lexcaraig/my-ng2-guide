@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit }        from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
   Validators,
   AbstractControl,
   ValidationErrors
-} from '@angular/forms';
+}                                   from '@angular/forms';
 
 import {  LIST_OF_CUSTOM_MESSAGES } from '../../utils/constants/form-custom-validation-messages';
 

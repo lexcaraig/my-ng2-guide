@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit }    from '@angular/core';
+import { FormControl }          from '@angular/forms';
 
 import { YoutubeSearchService } from '../../shared/services/youtube-search.service';
 
-import { Observable }     from 'rxjs/Observable';
-import { Subject }           from 'rxjs/Subject';
+import { Observable }           from 'rxjs/Observable';
+import { Subject }              from 'rxjs/Subject';
 
 // Observable class extensions
 import 'rxjs/add/observable/of';

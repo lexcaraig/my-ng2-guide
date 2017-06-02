@@ -5,7 +5,7 @@ import {
   Validators,
   AbstractControl,
   ValidationErrors
-} from '@angular/forms';
+}                            from '@angular/forms';
 
 @Component({
   selector: 'app-basic-form-validation',
