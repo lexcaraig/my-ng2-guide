@@ -2,7 +2,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GreetingsComponent } from './greetings/greetings.component';
-import { FormsComponent } from './forms/forms.component';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 

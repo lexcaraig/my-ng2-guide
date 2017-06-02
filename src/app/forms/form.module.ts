@@ -9,6 +9,9 @@ import { FormRxjsComponent } from './rxjs/form-rxjs.component';
 
 import { formRouting } from './form.routing';
 
+// services
+import { YoutubeSearchService } from '../shared/services/youtube-search.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +27,7 @@ import { formRouting } from './form.routing';
     FormRxjsComponent
   ],
   providers: [
-
+    YoutubeSearchService
   ]
 })
 export class FormModule {}
