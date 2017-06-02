@@ -7,7 +7,7 @@ import {
   ValidationErrors
 } from '@angular/forms';
 
-import {  LIST_OF_CUSTOM_MESSAGES } from '../utils/constants/form-custom-validation-messages';
+import {  LIST_OF_CUSTOM_MESSAGES } from '../../utils/constants/form-custom-validation-messages';
 
 @Component({
   selector: 'app-forms',
