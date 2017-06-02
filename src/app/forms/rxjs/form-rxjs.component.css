@@ -1,11 +1,14 @@
 .results {
   width: 250px;
-  height: 250px;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
   margin: 5px;
   text-align: center;
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 2px;
+}
+
+img {
+  max-width: 250px;
 }

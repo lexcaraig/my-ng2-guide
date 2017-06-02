@@ -9,7 +9,7 @@
     <div class="results"
       *ngFor="let video of results | async">
       <p>{{video.snippet.title}}</p>
-      <img [src]="video.snippet.thumbnails.default.url"/>
+      <img [src]="video.snippet.thumbnails.high.url"/>
     </div>
   </div>
 

@@ -16,6 +16,9 @@ export class YoutubeSearchService {
     return this.http
                .get(`${YOUTUBE_API.BASE_URL}?q=${query}&part=snippet&key=${YOUTUBE_API.API_TOKEN}`)
                .map(response => response.json())
-               .map(data => data.items);
+               .map(data => {
+                 console.log(data);
+                 return data.items;
+               });
   }
 }
