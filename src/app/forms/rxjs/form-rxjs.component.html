@@ -5,12 +5,18 @@
     <input id="search-box" placeholder="e.g. nba"
       #searchBox (keyup)="search(searchBox.value)" />
   </div>
-  <div class="">
+  <div class="" *ngIf="results | async; else loading">
     <div class="results"
       *ngFor="let video of results | async">
       <p>{{video.snippet.title}}</p>
       <img [src]="video.snippet.thumbnails.high.url"/>
     </div>
   </div>
+  <ng-template #loading>
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </ng-template>
 
 </div>

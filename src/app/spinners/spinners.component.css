@@ -1,0 +1,6 @@
+ul > li {
+  display: inline-block;
+  vertical-align: middle;
+  float: left;
+  margin: 10px;
+}
